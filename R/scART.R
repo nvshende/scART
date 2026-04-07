@@ -1,4 +1,5 @@
 #code for functions for scReadthrough R package
+#File defines three functions: AddReadthroughAssay, GeneReadthrough, and ReadthroughGTF
 
 #' Add readthrough assay
 #'

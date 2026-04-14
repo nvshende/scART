@@ -1,5 +1,8 @@
 # scART
+Readthrough transcription is transcription far downstream of the normal stop site of a gene, which can be caused by defects in transcription termination machinery.
 scART is a tool for analyzing readthrough transcription levels in single cell RNA sequencing (scRNA-seq) data.
+<img width="829" height="223" alt="ReadthroughSchematic" src="https://github.com/user-attachments/assets/dc1375dc-c02c-4ad0-85d8-341a7a0af6d7" />
+
 Included are instructions for System Setup/Installation and an example Workflow.
 
 ## Step 0: System Setup and Installation
@@ -98,7 +101,9 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir Human-Readthrough-STAR-
 
 
 ## Step 3: Performing an Alignment
-Download scRNA-seq data. Influenza infection scRNA-seq data will be used for this example:
+Download scRNA-seq data. Influenza infection scRNA-seq data will be used for this example.
+This data is from [GSE143167](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE143167)\
+Sun, J., Vera, J. C., Drnevich, J., Lin, Y. T., Ke, R., & Brooke, C. B. (2020). Single cell heterogeneity in influenza A virus gene expression shapes the innate antiviral response to infection. PLoS pathogens, 16(7), e1008671. https://doi.org/10.1371/journal.ppat.1008671:
 
 ```
 fastq-dump --gzip --split-files SRR10832416
@@ -174,6 +179,10 @@ You can see a violin plot of the overall readthrough levels using the following 
 VlnPlot(new_seurat_object, features = "logRatio.Readthrough")
 ```
 
+The violin plot should look like this:\
+<img width="420" height="420" alt="ReadthroughViolinPlot" src="https://github.com/user-attachments/assets/b64acdad-d6bc-4365-97d0-edf864124d15" />
+
+
 You can run UMAP on your data using:
 
 ```
@@ -191,6 +200,9 @@ After you run UMAP on your data, you can visualize the overall readthrough level
 ```
 FeaturePlot(new_seurat_object, features = "logRatio.Readthrough")
 ```
+
+This should generate a plot of cells in the dataset colored by overall readthrough level.\
+<img width="420" height="420" alt="ReadthroughUMAP" src="https://github.com/user-attachments/assets/33b56798-ccb5-43c7-815e-1ae9e63f2640" />
 
 You can also get a data frame containing individual readthrough levels for each gene using the GeneReadthrough function.
 This function takes a seurat object with a 'Readthrough' assay and a category by which to group the cells.
@@ -213,3 +225,5 @@ lines(density(df_final$Readthrough.3), col = "#0099FF")
 lines(density(df_final$Readthrough.4), col = "#FF66FF")
 legend("topleft", c("Seurat Cluster 0","Seurat Cluster 1", "Seurat Cluster 2", "Seurat Cluster 3", "Seurat Cluster 4"), col =c("#FF6666","#CC9933", "#00CC33", "#0099FF", "#FF66FF"), lty=1)
 ```
+The resulting plot should look like this:\
+<img width="420" height="420" alt="GeneReadthrough" src="https://github.com/user-attachments/assets/8401972d-c680-46d7-a5e7-e707a2f0f6b5" />

@@ -227,3 +227,6 @@ legend("topleft", c("Seurat Cluster 0","Seurat Cluster 1", "Seurat Cluster 2", "
 ```
 The resulting plot should look like this:\
 <img width="420" height="420" alt="GeneReadthrough" src="https://github.com/user-attachments/assets/8401972d-c680-46d7-a5e7-e707a2f0f6b5" />
+
+DOI for release V1.0.0:\
+https://doi.org/10.5281/zenodo.19933414
